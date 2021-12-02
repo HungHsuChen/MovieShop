@@ -1,6 +1,81 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model ApplicationCore.Models.MovieDetailResponseModel
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container bg-dark">
+	<div class="row">
+		<div class="col-4">
+			<div class="card bg-dark">
+				<div class = "card-body">
+					<img src="@Model.PosterUrl" class="float-end card-img-top"/>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="card text-white bg-dark">
+				<div class="card-body">
+					<h1 class = "card-title">@Model.Title</h1>
+					<h6 class = "card-subtitle text-muted">@Model.Tagline</h6>
+					<h5 class = "card-subtitle text-muted">
+						@Model.RunTime m | @Model.ReleaseDate.Year
+						@foreach (var genre in @Model.Genres)
+						{
+							<span class="badge bg-secondary float-right">@genre.Name</span>
+						}
+					</h5>
+					<span class="badge bg-success">8.9</span>
+					<p class="card-text">@Model.Overview</p>
+				</div>
+			</div>
+		</div>
+		<div class ="col-2">
+			<div class="d-grid gap-2 mx-auto">
+				<button class="btn btn-dark" type="button">REVIEW</button>
+				<button class="btn btn-light" type="button">BUY $@Math.Round(Model.Price, 2)</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class = "row">
+		<div class="col-5">
+			<h3>MOVIE FACTS</h3>
+			<hr />
+			<ul class="list-group">
+				<li class="list-group-item">
+					Release Date
+					<span class="badge bg-dark">@Model.ReleaseDate.ToString("MMM dd, yyyy")</span>
+				</li>
+				<li class="list-group-item">
+					Run Time
+					<span class="badge bg-dark">@Model.RunTime m</span>
+				</li>
+				<li class="list-group-item">
+					Budget
+					<span class="badge bg-dark">$@Math.Round(Model.Budget,2)</span>
+				</li>
+				<li class="list-group-item">
+				</li>
+			</ul>
+			<h3>TRAILERS</h3>
+			<hr />
+			<ul class="list-group">
+				<li class="list-group-item">
+					<a href="#">Inception</a>
+				</li>
+			</ul>
+		</div>
+		<div class = "col-7">
+			<h3>CAST</h3>
+			<hr />
+			<ul class="list-group">
+				@foreach (var cast in @Model.Casts)
+				{
+					<li class="list-group-item flex-column justify-content-evenly">
+					<img src="@cast.ProfilePath" />
+					<p>@cast.Name</p>
+					<p>@cast.Character</p>
+				</li>
+				}
+			</ul>
+		</div>
+	</div>
+</div>

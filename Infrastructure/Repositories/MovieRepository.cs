@@ -24,9 +24,21 @@ namespace Infrastructure.Repositories
              return movies;
         }
 
-
-
-    };
+        public Movie GetMovie()
+        {
+            var movie = new Movie
+            {
+                Id = 1,
+                Title = "Inception",
+                Budget = 160000000.0000M,
+                Overview = "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
+                PosterUrl = "https://image.tmdb.org/t/p/w342//9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+                Price = 9.90M,
+                ReleaseDate = DateTime.Parse("2010-07-15T00:00:00"),
+                RunTime = 148,
+                Tagline = "Your mind is the scene of the crime."
+            };
+            return movie;
         }
     }
 }

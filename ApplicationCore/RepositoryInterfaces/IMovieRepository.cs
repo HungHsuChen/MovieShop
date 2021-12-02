@@ -18,5 +18,7 @@ namespace ApplicationCore.RepositoryInterfaces
 
         IEnumerable<Movie> Get30HighestGrossingMovies();
 
+        Movie GetMovie();
+
     }
 }

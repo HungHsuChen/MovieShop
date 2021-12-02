@@ -7,12 +7,10 @@ namespace MovieShopMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private MovieService _movieService;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
+            _movieService = new MovieService();
         }
 
         [HttpGet]
@@ -21,6 +19,8 @@ namespace MovieShopMVC.Controllers
             // Call Model Service to get list of movie cards to show in the index view
             // 3 ways to pass the data/models from Controller Action methods to Views
                 // 1. Pass the Models in the View Method
+                // 2. ViewBag
+                // 3. ViewData
             var movieCards = _movieService.GetTopMovies();
             return View(movieCards);
         }
@@ -28,7 +28,8 @@ namespace MovieShopMVC.Controllers
         [HttpGet]
         public IActionResult Privacy()
         {
-            return View();
+            var movieDetail = _movieService.GetMovieDetail();
+            return View(movieDetail);
         }
 
         [HttpGet]

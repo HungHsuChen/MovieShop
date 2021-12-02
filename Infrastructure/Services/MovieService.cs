@@ -12,11 +12,36 @@ namespace Infrastructure.Services
     public class MovieService : IMovieService
     {
         private MovieRepository _movieRepository;
+        private CastRepository _castRepository;
+        private GenreRepository _genreRepository;
         public MovieService()
         {
             _movieRepository = new MovieRepository();
+            _castRepository = new CastRepository();
+            _genreRepository = new GenreRepository();
         }
 
+        public MovieDetailResponseModel GetMovieDetail()
+        {
+            var movie = _movieRepository.GetMovie();
+            var casts = _castRepository.GetCasts();
+            var genres = _genreRepository.GetGenres();
+            var movieDetail = new MovieDetailResponseModel
+            {
+                Id=movie.Id,
+                Title=movie.Title,
+                Budget=movie.Budget,
+                Overview=movie.Overview,
+                PosterUrl=movie.PosterUrl,
+                Price=movie.Price,
+                ReleaseDate=movie.ReleaseDate,
+                RunTime=movie.RunTime,
+                Tagline=movie.Tagline,
+                Genres=genres,
+                Casts=casts
+            };
+            return movieDetail;
+        }
 
         public IEnumerable<MovieCardResponseModel> GetTopMovies()
         {
