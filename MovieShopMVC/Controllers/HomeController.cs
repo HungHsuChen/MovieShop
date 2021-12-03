@@ -1,4 +1,6 @@
-﻿using Infrastructure.Services;
+﻿using ApplicationCore.ServiceInterfaces;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using MovieShopMVC.Models;
 using System.Diagnostics;
@@ -7,10 +9,17 @@ namespace MovieShopMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private MovieService _movieService;
-        public HomeController()
+        //private MovieService _movieService;
+        //public HomeController()
+        //{
+        //    _movieService = new MovieService(new MovieRepository());
+        //}
+
+        private readonly IMovieService _movieService;
+
+        public HomeController(IMovieService movieService)
         {
-            _movieService = new MovieService();
+            _movieService = movieService;
         }
 
         [HttpGet]

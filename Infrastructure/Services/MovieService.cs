@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Models;
+using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Repositories;
 using System;
@@ -11,14 +12,27 @@ namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
-        private MovieRepository _movieRepository;
-        private CastRepository _castRepository;
-        private GenreRepository _genreRepository;
-        public MovieService()
+        //private MovieRepository _movieRepository;
+        //private CastRepository _castRepository;
+        //private GenreRepository _genreRepository;
+        //public MovieService()
+        //{
+        //    _movieRepository = new MovieRepository();
+        //    _castRepository = new CastRepository();
+        //    _genreRepository = new GenreRepository();
+        //}
+
+        private readonly IMovieRepository _movieRepository;
+        private readonly ICastRepository _castRepository;
+        private readonly IGenreRepository _genreRepository;
+
+        public MovieService(IMovieRepository movieRepository, 
+                            ICastRepository castRepository, 
+                            IGenreRepository genreRepository)
         {
-            _movieRepository = new MovieRepository();
-            _castRepository = new CastRepository();
-            _genreRepository = new GenreRepository();
+            _movieRepository =  movieRepository;
+            _castRepository = castRepository;
+            _genreRepository = genreRepository;
         }
 
         public MovieDetailResponseModel GetMovieDetail()
