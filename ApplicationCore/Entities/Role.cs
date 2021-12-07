@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationCore.Entities
 {
-    [Table("Genre")]
-    public class Genre
+    [Table("Role")]
+    public class Role
     {
+        [Key]
         public int Id { get; set; }
 
-        [MaxLength(24)]
-        public string? Name { get; set; }
+        [MaxLength(20)]
+        public string Name { get; set; }
     }
 }
