@@ -35,26 +35,77 @@ namespace Infrastructure.Services
             _genreRepository = genreRepository;
         }
 
-        public MovieDetailResponseModel GetMovieDetail()
+        public MovieDetailsResponseModel GetMovieDetail(int id)
         {
-            var movie = _movieRepository.GetMovie();
-            var casts = _castRepository.GetCasts();
-            var genres = _genreRepository.GetGenres();
-            var movieDetail = new MovieDetailResponseModel
+            //var movie = _movieRepository.GetMovie();
+            //var casts = _castRepository.GetCasts();
+            //var genres = _genreRepository.GetGenres();
+            //var movieDetail = new MovieDetailsResponseModel
+            //{
+            //    Id=movie.Id,
+            //    Title=movie.Title,
+            //    Budget= (decimal)movie.Budget,
+            //    Overview=movie.Overview,
+            //    PosterUrl=movie.PosterUrl,
+            //    Price= (decimal)movie.Price,
+            //    ReleaseDate= (DateTime)movie.ReleaseDate,
+            //    RunTime= (int)movie.RunTime,
+            //    Tagline=movie.Tagline,
+            //    Genres=genres,
+            //    Casts=casts
+            //};
+            //return movieDetail;
+
+            var movie = _movieRepository.GetById(id);
+
+            // map movie entity into Movie Details Model
+            // Automapper that can be used for mapping one object to another object
+
+            var movieDetails = new MovieDetailsResponseModel
             {
-                Id=movie.Id,
-                Title=movie.Title,
-                Budget= (decimal)movie.Budget,
-                Overview=movie.Overview,
-                PosterUrl=movie.PosterUrl,
-                Price= (decimal)movie.Price,
-                ReleaseDate= (DateTime)movie.ReleaseDate,
-                RunTime= (int)movie.RunTime,
-                Tagline=movie.Tagline,
-                Genres=genres,
-                Casts=casts
+                Id = movie.Id,
+                PosterUrl = movie.PosterUrl,
+                Title = movie.Title,
+                OriginalLanguage = movie.OriginalLanguage,
+                Overview = movie.Overview,
+                Rating = (decimal)movie.Rating,
+                Tagline = movie.Tagline,
+                RunTime = movie.RunTime,
+                BackdropUrl = movie.BackdropUrl,
+                TmdbUrl = movie.TmdbUrl,
+                ImdbUrl = movie.ImdbUrl
             };
-            return movieDetail;
+
+            foreach (var movieCast in movie.CastOfMovie)
+            {
+                movieDetails.Casts.Add(new CastResponseModel
+                {
+                    Id = movieCast.CastId,
+                    Character = movieCast.Character,
+                    Name = movieCast.Cast.Name,
+                    PosterUrl = movieCast.Cast.ProfilePath
+                });
+            }
+
+            foreach (var trailer in movie.Trailers)
+            {
+                movieDetails.Trailers.Add(new TrailerResponseModel
+                {
+                    Id = trailer.Id,
+                    MovieId = trailer.Id,
+                    TrailerUrl = trailer.TrailerUrl
+                });
+            }
+
+            foreach (var movieGenre in movie.GenresOfMovie)
+            {
+                movieDetails.Genres.Add(new GenreModel
+                {
+
+                });
+            }
+
+            return movieDetails;
         }
 
         public IEnumerable<MovieCardResponseModel> GetTopMovies()
@@ -70,6 +121,8 @@ namespace Infrastructure.Services
                     );
             }
             return movieCards;
+
+            
         }
     }
 }

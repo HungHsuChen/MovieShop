@@ -37,7 +37,7 @@ namespace MovieShopMVC.Controllers
         [HttpGet]
         public IActionResult Privacy()
         {
-            var movieDetail = _movieService.GetMovieDetail();
+            var movieDetail = _movieService.GetMovieDetail(9);
             return View(movieDetail);
         }
 

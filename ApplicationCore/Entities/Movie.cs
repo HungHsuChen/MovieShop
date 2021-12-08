@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,9 @@ namespace ApplicationCore.Entities
         public string? UpdatedBy { get; set; }
         public string? CreatedBy { get; set; }
 
+        // Need a property (rating) for business/UI logic but I don't want rating as column in the table
+        [NotMapped]
+        public decimal? Rating { get; set; }
 
         //// Navigation property
         public List<Trailer> Trailers { get; set; }
