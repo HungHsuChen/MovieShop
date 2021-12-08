@@ -6,9 +6,12 @@ namespace ApplicationCore.Entities
     [Table("Genre")]
     public class Genre
     {
+        [Key]
         public int Id { get; set; }
 
-        [MaxLength(24)]
+        [MaxLength(64)]
         public string? Name { get; set; }
+
+        public List<MovieGenre> MoviesOfGenre { get; set; }
     }
 }

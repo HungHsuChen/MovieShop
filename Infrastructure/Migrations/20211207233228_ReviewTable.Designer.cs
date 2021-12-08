@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MovieShopDbContext))]
-    partial class MovieShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211207233228_ReviewTable")]
+    partial class ReviewTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(2084)
                         .HasColumnType("nvarchar(2084)");
 
-                    b.Property<string>("TmdbUrl")
+                    b.Property<string>("TmbdUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -251,7 +253,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("MovieGenre", (string)null);
+                    b.ToTable("MovieTable", (string)null);
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.Purchase", b =>

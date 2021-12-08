@@ -14,6 +14,7 @@ builder.Services.AddControllersWithViews();
 
 // Services Injection
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 
 // Repositories Injection
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();

@@ -44,12 +44,12 @@ namespace Infrastructure.Services
             {
                 Id=movie.Id,
                 Title=movie.Title,
-                Budget=movie.Budget,
+                Budget= (decimal)movie.Budget,
                 Overview=movie.Overview,
                 PosterUrl=movie.PosterUrl,
-                Price=movie.Price,
-                ReleaseDate=movie.ReleaseDate,
-                RunTime=movie.RunTime,
+                Price= (decimal)movie.Price,
+                ReleaseDate= (DateTime)movie.ReleaseDate,
+                RunTime= (int)movie.RunTime,
                 Tagline=movie.Tagline,
                 Genres=genres,
                 Casts=casts

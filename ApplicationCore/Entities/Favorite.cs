@@ -17,7 +17,7 @@ namespace ApplicationCore.Entities
         [Required(AllowEmptyStrings = false)]
         public int UserId { get; set; }
 
-        public Movie? Movie { get; set; }
-        public User? User { get; set; }
+        public Movie Movie { get; set; }
+        public User User { get; set; }
     }
 }

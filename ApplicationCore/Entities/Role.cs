@@ -11,5 +11,6 @@ namespace ApplicationCore.Entities
 
         [MaxLength(20)]
         public string Name { get; set; }
+        public List<UserRole> UsersOfRole { get; set; }
     }
 }

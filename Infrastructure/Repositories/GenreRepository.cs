@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Entities;
 using ApplicationCore.RepositoryInterfaces;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,10 @@ namespace Infrastructure.Repositories
 {
     public class GenreRepository : Repository<Genre>, IGenreRepository
     {
+        public GenreRepository(MovieShopDbContext dbContext) : base(dbContext)
+        {
+        }
+
         public IEnumerable<Genre> GetGenres()
         {
             var genres = new List<Genre>
