@@ -13,6 +13,7 @@ namespace ApplicationCore.Models
         {
             Genres = new List<GenreModel>();
             Trailers = new List<TrailerResponseModel>();
+            Casts = new List<CastResponseModel>();
 
         }
         public int Id { get; set; }
@@ -28,7 +29,8 @@ namespace ApplicationCore.Models
         public string? OriginalLanguage { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public int? RunTime { get; set; }
-        public decimal Rating { get; set; }
+        public decimal? Rating { get; set; }
+        public decimal? Price { get; set; }
         public List<TrailerResponseModel> Trailers { get; set; }
         public List<GenreModel> Genres { get; set; }
         public List<CastResponseModel> Casts { get; set; }

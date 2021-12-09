@@ -23,16 +23,16 @@ namespace Infrastructure.Services
         //}
 
         private readonly IMovieRepository _movieRepository;
-        private readonly ICastRepository _castRepository;
-        private readonly IGenreRepository _genreRepository;
+        //private readonly ICastRepository _castRepository;
+        //private readonly IGenreRepository _genreRepository;
 
-        public MovieService(IMovieRepository movieRepository, 
-                            ICastRepository castRepository, 
-                            IGenreRepository genreRepository)
+        public MovieService(IMovieRepository movieRepository)
+        //                    ICastRepository castRepository, 
+        //                    IGenreRepository genreRepository)
         {
             _movieRepository =  movieRepository;
-            _castRepository = castRepository;
-            _genreRepository = genreRepository;
+            //_castRepository = castRepository;
+            //_genreRepository = genreRepository;
         }
 
         public MovieDetailsResponseModel GetMovieDetail(int id)
@@ -68,12 +68,13 @@ namespace Infrastructure.Services
                 Title = movie.Title,
                 OriginalLanguage = movie.OriginalLanguage,
                 Overview = movie.Overview,
-                Rating = (decimal)movie.Rating,
+                Rating = movie.Rating,
                 Tagline = movie.Tagline,
                 RunTime = movie.RunTime,
                 BackdropUrl = movie.BackdropUrl,
                 TmdbUrl = movie.TmdbUrl,
-                ImdbUrl = movie.ImdbUrl
+                ImdbUrl = movie.ImdbUrl,
+                Price = movie.Price
             };
 
             foreach (var movieCast in movie.CastOfMovie)
@@ -93,6 +94,7 @@ namespace Infrastructure.Services
                 {
                     Id = trailer.Id,
                     MovieId = trailer.Id,
+                    Name = trailer.Name,
                     TrailerUrl = trailer.TrailerUrl
                 });
             }
@@ -101,7 +103,8 @@ namespace Infrastructure.Services
             {
                 movieDetails.Genres.Add(new GenreModel
                 {
-
+                    Id = movieGenre.GenreId,
+                    Name = movieGenre.Genre.Name
                 });
             }
 
