@@ -1,34 +1,40 @@
-﻿<div class="container-fluid align-content-center mt-0">
+﻿@model ApplicationCore.Models.UserRegisterRequestModel
+
+@{
+	ViewData["Title"] = "Register";
+}
+
+<div class="container-fluid align-content-center mt-0">
 	<div class="row justify-content-md-center">
 		<div class="col-4  shadow rounded p-3">
-			<form>
+			<form id="registerForm" asp-action="Register">
 				<legend>
 					Register
 				</legend>
-				<br />
+				<hr />
 				<div class="mb-3">
-					<label for="firstName" class="form-label">First Name</label>
-					<input type="text" class="form-control" id="firstName">
+					<label asp-for="FirstName" class="form-label">First Name</label>
+					<input type="text" class="form-control" asp-for="FirstName">
 				</div>
 				<div class="mb-3">
-					<label for="lastName" class="form-label">Last Name</label>
-					<input type="text" class="form-control" id="lastName">
+					<label asp-for="LastName" class="form-label">Last Name</label>
+					<input type="text" class="form-control" asp-for="LastName">
 				</div>
 				<div class="mb-3">
-					<label for="dateOfBirth" class="form-label">Date Of Birth</label>
-					<input type="date" class="form-control" id="dateOfBirth">
+					<label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+					<input type="date" class="form-control" asp-for="DateOfBirth">
 				</div>
 				<div class="mb-3">
-					<label for="email" class="form-label">Email</label>
-					<input type="email" class="form-control" id="email">
+					<label asp-for="Email" class="form-label">Email</label>
+					<input type="email" class="form-control" asp-for="Email">
 				</div>
 				<div class="mb-3">
-					<label for="password" class="form-label">Password</label>
-					<input type="password" class="form-control" id="password">
+					<label asp-for="Password" class="form-label">Password</label>
+					<input type="password" class="form-control" asp-for="Password">
 				</div>
 				<div class="mb-3">
-					<label for="confirmPassword" class="form-label">Confirm password</label>
-					<input type="password" class="form-control" id="confirmPassword">
+					<label asp-for="ConfirmPassword" class="form-label">Confirm password</label>
+					<input type="password" class="form-control" asp-for="ConfirmPassword">
 				</div>
 				<button type="submit" class="btn btn-primary">Create Account</button>
 			</form>

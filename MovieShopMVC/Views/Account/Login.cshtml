@@ -1,4 +1,10 @@
-﻿<div class="container-fluid align-content-center mt-0">
+﻿@model ApplicationCore.Models.LoginRequestModel
+
+@{
+	ViewData["Title"] = "Login";
+}
+
+<div class="container-fluid align-content-center mt-0">
 	<div class="row justify-content-md-center">
 		<div class="col-4 shadow rounded p-3">
 			<form>
@@ -7,12 +13,12 @@
 				</legend>
 				<br />
 				<div class="mb-3">
-					<label for="email" class="form-label">Email</label>
-					<input type="email" class="form-control" id="email">
+					<label asp-for="Email" class="form-label">Email</label>
+					<input type="email" class="form-control" asp-for="Email">
 				</div>
 				<div class="mb-3">
-					<label for="password" class="form-label">Password</label>
-					<input type="password" class="form-control" id="password">
+					<label asp-for="Password" class="form-label">Password</label>
+					<input type="password" class="form-control" asp-for="Password">
 				</div>
 				<button type="submit" class="btn btn-primary">Login</button>
 			</form>
