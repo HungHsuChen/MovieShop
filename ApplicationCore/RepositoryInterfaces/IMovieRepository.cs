@@ -16,7 +16,7 @@ namespace ApplicationCore.RepositoryInterfaces
         // Delete
         // GetMovies -> collection by condition -> list of movies whose budget > 100 million
 
-        IEnumerable<Movie> Get30HighestGrossingMovies();
+        Task<IEnumerable<Movie>> Get30HighestGrossingMovies();
 
         //Movie GetMovie();
 

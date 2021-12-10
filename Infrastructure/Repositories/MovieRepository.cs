@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public IEnumerable<Movie> Get30HighestGrossingMovies()
+        public async Task<IEnumerable<Movie>> Get30HighestGrossingMovies()
         {
             //we neeed to go to database and get the movies using Dapper or EF Core
             //var movies = new List<Movie>
@@ -30,24 +30,24 @@ namespace Infrastructure.Repositories
 
 
             // access the dbcontext object and dbset of movies object to query the movies table
-            var movies = _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToList();
+            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
 
             return movies;
         }
 
-        public override Movie GetById(int id)
+        public async override Task<Movie> GetById(int id)
         {
             // call the Movie dbset and also include the navigation properties such as Genres, Trailers, and Cast
 
             // Include method in EF will help us navigate to related tables and get data
-            var movieDetails = _dbContext.Movies.Include(m => m.CastOfMovie).ThenInclude(m => m.Cast)
+            var movieDetails = await _dbContext.Movies.Include(m => m.CastOfMovie).ThenInclude(m => m.Cast)
                 .Include(m => m.GenresOfMovie).ThenInclude(m=>m.Genre).Include(m=>m.Trailers)
-                .FirstOrDefault(m=>m.Id==id);
+                .FirstOrDefaultAsync(m=>m.Id==id);
 
             if (movieDetails == null) return null;
 
-            var rating = _dbContext.Review.Where(m => m.MovieId == id).DefaultIfEmpty()
-                .Average(r => r == null ? 0 : r.Rating);
+            var rating = await _dbContext.Review.Where(m => m.MovieId == id).DefaultIfEmpty()
+                .AverageAsync(r => r == null ? 0 : r.Rating);
 
             movieDetails.Rating = rating;
 
