@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
 
 
             // access the dbcontext object and dbset of movies object to query the movies table
-            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
+            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(10).ToListAsync();
 
             return movies;
         }

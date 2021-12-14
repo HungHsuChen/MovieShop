@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews();
 
 // Services Injection
 builder.Services.AddScoped<IMovieService, MovieService>();
-builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserService, UserService>();
 

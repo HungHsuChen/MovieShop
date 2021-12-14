@@ -9,17 +9,13 @@ namespace MovieShopMVC.Controllers
 {
     public class HomeController : Controller
     {
-        //private MovieService _movieService;
-        //public HomeController()
-        //{
-        //    _movieService = new MovieService(new MovieRepository());
-        //}
 
         private readonly IMovieService _movieService;
-
-        public HomeController(IMovieService movieService)
+        private readonly IGenreService _genreService;
+        public HomeController(IMovieService movieService, IGenreService genreService )
         {
             _movieService = movieService;
+            _genreService = genreService;
         }
 
         // u1, u2, ...., u100 =>
@@ -41,7 +37,7 @@ namespace MovieShopMVC.Controllers
             // This is an I/O bound operation => Database calls, File calls, Http Call
             // May take 10ms, 100ms, 1sec, 10sec
             // T1 is waiting for the I/O bound operation to finish
-            var movieCards = await _movieService.GetTopMovies();
+            var movieCards = await _movieService.GetHighestGrossingMovies();
             
             // CPU bound operation => Resizing an image, reading pixel image, calculating Pi, calculating algorithm, loan interest
 

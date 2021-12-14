@@ -12,27 +12,12 @@ namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
-        //private MovieRepository _movieRepository;
-        //private CastRepository _castRepository;
-        //private GenreRepository _genreRepository;
-        //public MovieService()
-        //{
-        //    _movieRepository = new MovieRepository();
-        //    _castRepository = new CastRepository();
-        //    _genreRepository = new GenreRepository();
-        //}
 
         private readonly IMovieRepository _movieRepository;
-        //private readonly ICastRepository _castRepository;
-        //private readonly IGenreRepository _genreRepository;
 
         public MovieService(IMovieRepository movieRepository)
-        //                    ICastRepository castRepository, 
-        //                    IGenreRepository genreRepository)
         {
             _movieRepository =  movieRepository;
-            //_castRepository = castRepository;
-            //_genreRepository = genreRepository;
         }
 
         public async Task<MovieDetailsResponseModel> GetMovieDetail(int id)
@@ -113,7 +98,7 @@ namespace Infrastructure.Services
             return movieDetails;
         }
 
-        public async Task<IEnumerable<MovieCardResponseModel>> GetTopMovies()
+        public async Task<IEnumerable<MovieCardResponseModel>> GetHighestGrossingMovies()
         {
             // call my MovieRepository and get the data
             var movies = await _movieRepository.Get30HighestGrossingMovies();

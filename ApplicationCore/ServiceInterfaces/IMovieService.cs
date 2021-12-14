@@ -10,7 +10,7 @@ namespace ApplicationCore.ServiceInterfaces
     public interface IMovieService
     {
         // Expose the methods that are required by the client/views
-        Task <IEnumerable<MovieCardResponseModel>> GetTopMovies();
+        Task <IEnumerable<MovieCardResponseModel>> GetHighestGrossingMovies();
 
         Task<MovieDetailsResponseModel> GetMovieDetail(int id);
 
