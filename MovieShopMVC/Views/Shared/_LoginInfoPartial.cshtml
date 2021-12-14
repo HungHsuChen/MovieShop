@@ -6,7 +6,7 @@
 	<div class="text-end">
 		<ul class="nav">
 			<li class="nav-item dropdown">
-				<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-data-transition="dropdown" aria-expanded="false"> 
+				<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> 
 					@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value
 
 					@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Surname)?.Value
