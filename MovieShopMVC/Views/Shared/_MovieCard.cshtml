@@ -1,11 +1,11 @@
 ﻿@model ApplicationCore.Models.MovieCardResponseModel
 
-<div class="card mb-4 shadow bg-light">
+<div class="card shadow bg-light border-0">
 	@*when we click on the poster, go to Moveis controller and Details action method and it should pass the id of the movie
 		http://localhost/movies/details/3
 	Tag helpers
 	*@
-	<div class="card-img-top">
+	<div class="card-img-top mb-0">
 		<a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id">
 			<img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title"/>
 		</a>
