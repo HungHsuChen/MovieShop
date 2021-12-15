@@ -24,7 +24,7 @@ namespace MovieShopMVC.Controllers
             // go to User Service and call User Respository and get the Movies purchased by user who loged in
             var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             // pass above user id to User Service
-            var purchased = _userService.GetUserPurchasedMovies(userId);
+            var purchased = await _userService.GetUserPurchasedMovies(userId);
             return View(purchased);
         }
 
@@ -37,7 +37,9 @@ namespace MovieShopMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            return View();
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var user = await _userService.GetUserDetails(userId);
+            return View(user);
         }
 
         [HttpGet]

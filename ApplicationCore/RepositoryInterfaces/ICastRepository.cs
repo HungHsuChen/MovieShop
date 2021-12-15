@@ -9,6 +9,6 @@ namespace ApplicationCore.RepositoryInterfaces
 {
     public interface ICastRepository: IRepository<Cast>
     {
-        IEnumerable<Cast> GetCasts();
+        //Task<IEnumerable<Cast>> GetCasts();
     }
 }

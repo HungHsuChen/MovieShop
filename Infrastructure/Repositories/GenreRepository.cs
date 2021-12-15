@@ -15,15 +15,15 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public IEnumerable<Genre> GetGenres()
-        {
-            var genres = new List<Genre>
-            {
-                new Genre { Id= 1, Name= "Adventure" },
-                new Genre { Id= 6, Name= "Action" },
-                new Genre { Id= 13, Name= "Science Fiction" }
-            };
-            return genres;
-        }
+        //public IEnumerable<Genre> GetGenres()
+        //{
+        //    var genres = new List<Genre>
+        //    {
+        //        new Genre { Id= 1, Name= "Adventure" },
+        //        new Genre { Id= 6, Name= "Action" },
+        //        new Genre { Id= 13, Name= "Science Fiction" }
+        //    };
+        //    return genres;
+        //}
     }
 }

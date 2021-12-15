@@ -25,9 +25,21 @@ namespace Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public Task<UserDetailsModel> GetUserDetailss(int id)
+        public async Task<UserDetailsModel> GetUserDetails(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(id);
+
+            var userDetail = new UserDetailsModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DateOfBirth = user.DateOfBirth,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
+            };
+
+            return userDetail;
         }
 
         public Task<List<MovieCardResponseModel>> GetUserFavoritedMovies(int id)

@@ -9,6 +9,6 @@ namespace ApplicationCore.RepositoryInterfaces
 {
     public interface IGenreRepository: IRepository<Genre>
     {
-        IEnumerable<Genre> GetGenres();
+        //Task<IEnumerable<Genre>> GetGenres();
     }
 }
