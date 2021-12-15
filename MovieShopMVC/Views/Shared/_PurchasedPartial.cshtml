@@ -1,0 +1,3 @@
+﻿@using System.Security.Claims
+
+@Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)

@@ -23,15 +23,31 @@ namespace Infrastructure.Services
 
         public async Task<bool> EditUserProfile(UserDetailsModel model)
         {
-            var user = await _userRepository.GetById(model.Id);
+            var dbuser = await _userRepository.GetById(model.Id);
 
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.Email = model.Email;
-            user.DateOfBirth = model.DateOfBirth;
-            user.PhoneNumber = model.PhoneNumber;
+            //var user = new User
+            //{
+                  //Id = model.Id,
+            dbuser.FirstName = model.FirstName;
+            dbuser.LastName = model.LastName;
+            dbuser.Email = model.Email;
+            dbuser.DateOfBirth = model.DateOfBirth;
+            dbuser.PhoneNumber = model.PhoneNumber;
+            //    HashedPassword = dbuser.HashedPassword,
+            //    TwoFactorEnabled = dbuser.TwoFactorEnabled,
+            //    LockoutEndDate = dbuser.LockoutEndDate,
+            //    LastLoginDateTime = dbuser.LastLoginDateTime,
+            //    IsLocked = dbuser.IsLocked,
+            //    AccessFailedCount = dbuser.AccessFailedCount,
+            //    ProfilePictureUrl = dbuser.ProfilePictureUrl,
+            //    Favorites = dbuser.Favorites,
+            //    Purchases = dbuser.Purchases,
+            //    RolesOfUser = dbuser.RolesOfUser,
+            //    UserReview = dbuser.UserReview
+            //};
+            
 
-            var updateUser = await _userRepository.Update(user);
+            var updateUser = await _userRepository.Update(dbuser);
 
             return true;
         }
