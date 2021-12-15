@@ -42,9 +42,24 @@ namespace Infrastructure.Services
             return userDetail;
         }
 
-        public Task<List<MovieCardResponseModel>> GetUserFavoritedMovies(int id)
+        public async Task<List<MovieCardResponseModel>> GetUserFavoritedMovies(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(id);
+
+            var movieCards = new List<MovieCardResponseModel>();
+
+            foreach (var favoritedMovie in user.Favorites)
+            {
+                var movie = await _movieRepository.GetById(favoritedMovie.MovieId);
+                movieCards.Add(new MovieCardResponseModel
+                {
+                    Id = movie.Id,
+                    PosterUrl = movie.PosterUrl,
+                    Title = movie.Title
+                });
+            }
+
+            return movieCards;
         }
 
         public async Task<List<PurchaseDetailResponseModel>> GetUserPurchasedMovies(int id)

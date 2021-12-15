@@ -31,7 +31,10 @@ namespace MovieShopMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
-            return View();
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var favorited = await _userService.GetUserFavoritedMovies(userId);
+            return View(favorited);
         }
 
         [HttpGet]

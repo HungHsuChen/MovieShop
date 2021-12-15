@@ -25,6 +25,7 @@ namespace Infrastructure.Repositories
         public async override Task<User> GetById(int id)
         {
             var userDetail = await _dbContext.Users.Include(m => m.Purchases).ThenInclude(m => m.Movie)
+                .Include(m => m.Favorites).ThenInclude(m => m.Movie)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (userDetail == null) return null;
