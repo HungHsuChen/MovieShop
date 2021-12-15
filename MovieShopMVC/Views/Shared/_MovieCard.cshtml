@@ -5,8 +5,9 @@
 		http://localhost/movies/details/3
 	Tag helpers
 	*@
-	<a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id">
-		<img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title"/>
-	</a>
-
+	<div class="card-img-top">
+		<a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id">
+			<img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title"/>
+		</a>
+	</div>
 </div>

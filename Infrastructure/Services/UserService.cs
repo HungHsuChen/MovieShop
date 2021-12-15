@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Models;
+﻿using ApplicationCore.Entities;
+using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
 using System;
@@ -20,9 +21,19 @@ namespace Infrastructure.Services
             _movieRepository = movieRepository;
         }
 
-        public Task<bool> EditUserProfile(UserDetailsModel userDetailsModel)
+        public async Task<bool> EditUserProfile(UserDetailsModel model)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(model.Id);
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            user.DateOfBirth = model.DateOfBirth;
+            user.PhoneNumber = model.PhoneNumber;
+
+            var updateUser = await _userRepository.Update(user);
+
+            return true;
         }
 
         public async Task<UserDetailsModel> GetUserDetails(int id)

@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Entities;
+using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,5 @@ namespace Infrastructure.Repositories
 
             return userDetail;
         }
-
     }
 }

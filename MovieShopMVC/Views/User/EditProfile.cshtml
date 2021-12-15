@@ -1,0 +1,30 @@
+﻿@model ApplicationCore.Models.UserDetailsModel
+
+<form id="updateForm" asp-action="EditProfile">
+	<legend>
+		Update User Profile
+	</legend>
+	<hr />
+	<div class="mb-3">
+		<label asp-for="FirstName" class="form-label">First Name</label>
+		<input type="text" class="form-control" asp-for="FirstName" value="@Model.FirstName">
+	</div>
+	<div class="mb-3">
+		<label asp-for="LastName" class="form-label">Last Name</label>
+		<input type="text" class="form-control" asp-for="LastName" value="@Model.LastName">
+	</div>
+	<div class="mb-3">
+		<label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+		<input type="date" class="form-control" asp-for="DateOfBirth" value="@Model.DateOfBirth">
+	</div>
+	<div class="mb-3">
+		<label asp-for="Email" class="form-label">Email</label>
+		<input type="email" class="form-control" asp-for="Email" value="@Model.Email">
+	</div>
+	<div class="mb-3">
+		<label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+		<input type="text" class="form-control" asp-for="PhoneNumber" value="@Model.PhoneNumber">
+	</div>
+	<button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
+			
