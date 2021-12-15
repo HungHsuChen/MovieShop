@@ -9,7 +9,7 @@ namespace ApplicationCore.ServiceInterfaces
 {
     public interface IUserService
     {
-        Task<List<MovieCardResponseModel>> GetUserPurchasedMovies(int id);
+        Task<List<PurchaseDetailResponseModel>> GetUserPurchasedMovies(int id);
         Task<List<MovieCardResponseModel>> GetUserFavoritedMovies(int id);
         Task<UserDetailsModel> GetUserDetailss(int id);
         Task<bool> EditUserProfile(UserDetailsModel userDetailsModel);
