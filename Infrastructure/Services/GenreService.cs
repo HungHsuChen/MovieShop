@@ -1,6 +1,7 @@
 ﻿using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,40 @@ namespace Infrastructure.Services
     public class GenreService : IGenreService
     {
         private readonly IGenreRepository _genreRepository;
-        public GenreService(IGenreRepository genreRepository)
+        private readonly IMemoryCache _memoryCache;
+        private static readonly string _genresCacheKey = "genres";
+        private static readonly TimeSpan DefaultCacheDuration = TimeSpan.FromDays(7);
+        public GenreService(IGenreRepository genreRepository, IMemoryCache memoryCache)
         {
             _genreRepository = genreRepository;
+            _memoryCache = memoryCache;
         }
 
         public async Task<List<GenreModel>> GetAllGenres()
         {
-            var genres = await _genreRepository.GetAll();
+            // this is the database call
+            // first check the cache if the genres are already in the cache
+            // if the genres already present in the memory then we don't need to go to database
+            // just read the genres from the cache
 
+            // if the genres is not present in the cache => then go to database and get the genres
+            // then store them in the cache
+
+            // make sure the cache is not expired then get the data
+            // when we update/create any new genre then we call the cache and delete that from cache
+
+            var genresFromCache = await _memoryCache.GetOrCreateAsync(_genresCacheKey, CacheFactory);
+                // Func<int,int,string> => last will be return type
+                // Action<int,int,string>
+
+            return genresFromCache.OrderBy(o => o.Name).ToList();
+        }
+
+        private async Task<IEnumerable<GenreModel>> CacheFactory(ICacheEntry entry)
+        {
+            entry.SlidingExpiration = DefaultCacheDuration;
+
+            var genres = await _genreRepository.GetAll();
             var genreModel = new List<GenreModel>();
             foreach (var genre in genres)
             {
@@ -29,5 +55,6 @@ namespace Infrastructure.Services
 
             return genreModel;
         }
+
     }
 }
