@@ -31,7 +31,7 @@ namespace MovieShopMVC.Helpers
             {
                 // Exception Happened, so handle the exception and implement the logging
                 _logger.LogInformation("----------------START EXCEPTION--------------");
-                await HandleException(httpContext, ex)
+                await HandleException(httpContext, ex);
             }
         }
 

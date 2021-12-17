@@ -31,6 +31,7 @@ namespace ApplicationCore.Models
         public int? RunTime { get; set; }
         public decimal? Rating { get; set; }
         public decimal? Price { get; set; }
+        public bool? PurchaseStat { get; set; }
         public List<TrailerResponseModel> Trailers { get; set; }
         public List<GenreModel> Genres { get; set; }
         public List<CastResponseModel> Casts { get; set; }

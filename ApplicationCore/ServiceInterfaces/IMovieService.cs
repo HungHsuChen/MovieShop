@@ -14,6 +14,6 @@ namespace ApplicationCore.ServiceInterfaces
 
         Task<MovieDetailsResponseModel> GetMovieDetail(int id);
 
-
+        Task<bool> PurchaseStat(int movieId, int userId);
     }
 }

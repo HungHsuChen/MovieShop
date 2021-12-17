@@ -14,10 +14,12 @@ namespace Infrastructure.Services
     {
 
         private readonly IMovieRepository _movieRepository;
+        private readonly IPurchaseRepository _purchaseRepository;
 
-        public MovieService(IMovieRepository movieRepository)
+        public MovieService(IMovieRepository movieRepository, IPurchaseRepository purchaseRepository)
         {
             _movieRepository =  movieRepository;
+            _purchaseRepository = purchaseRepository;
         }
 
         public async Task<MovieDetailsResponseModel> GetMovieDetail(int id)
@@ -113,6 +115,17 @@ namespace Infrastructure.Services
             return movieCards;
 
             
+        }
+
+        public async Task<bool> PurchaseStat(int movieId, int userId)
+        {
+            var purchase = await _purchaseRepository.GetById(movieId, userId);
+
+            if(purchase == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

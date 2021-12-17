@@ -25,27 +25,11 @@ namespace Infrastructure.Services
         {
             var dbuser = await _userRepository.GetById(model.Id);
 
-            //var user = new User
-            //{
-                  //Id = model.Id,
             dbuser.FirstName = model.FirstName;
             dbuser.LastName = model.LastName;
             dbuser.Email = model.Email;
             dbuser.DateOfBirth = model.DateOfBirth;
             dbuser.PhoneNumber = model.PhoneNumber;
-            //    HashedPassword = dbuser.HashedPassword,
-            //    TwoFactorEnabled = dbuser.TwoFactorEnabled,
-            //    LockoutEndDate = dbuser.LockoutEndDate,
-            //    LastLoginDateTime = dbuser.LastLoginDateTime,
-            //    IsLocked = dbuser.IsLocked,
-            //    AccessFailedCount = dbuser.AccessFailedCount,
-            //    ProfilePictureUrl = dbuser.ProfilePictureUrl,
-            //    Favorites = dbuser.Favorites,
-            //    Purchases = dbuser.Purchases,
-            //    RolesOfUser = dbuser.RolesOfUser,
-            //    UserReview = dbuser.UserReview
-            //};
-            
 
             var updateUser = await _userRepository.Update(dbuser);
 
