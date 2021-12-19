@@ -37,7 +37,7 @@ namespace MovieShopMVC.Helpers
 
         private async Task HandleException(HttpContext context, Exception ex)
         {
-            _logger.LogError("Something went wrong ${ex.Message}");
+            _logger.LogError($"Something went wrong {ex.Message}");
 
             var errorDetails = new {
                 ExceptionMessage = ex.Message,

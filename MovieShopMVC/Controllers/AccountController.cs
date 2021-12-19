@@ -45,6 +45,7 @@ namespace MovieShopMVC.Controllers
             if (user == null)
             {
                 // send message to the view saying "please enter correct email/password"
+                return RedirectToAction("Login");
             }
 
             // create a cookie => have information Claims (MovieShopAuthCookie
