@@ -32,6 +32,7 @@ try
     builder.Services.AddScoped<IGenreService, GenreService>();
     builder.Services.AddScoped<IAccountService, AccountService>();
     builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddScoped<ICastService, CastService>();
 
     // Repositories Injection
     builder.Services.AddScoped<IMovieRepository, MovieRepository>();

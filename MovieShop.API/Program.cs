@@ -18,6 +18,7 @@ builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICastService, CastService>();
 
 // Repositories Injection
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
@@ -30,7 +31,7 @@ builder.Services.AddDbContext<MovieShopDbContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("MovieShopDbConnection"))
         );
 
-//builder.Services.AddMemoryCache;
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
