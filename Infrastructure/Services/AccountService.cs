@@ -19,6 +19,7 @@ namespace Infrastructure.Services
         {
             _userRepository = userRepository;
         }
+
         public async Task<int> RegisterUser(UserRegisterRequestModel model)
         {
             // make sure the email user entered does not exsits in our database

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Models
 {
-    public class MovieReveiwResponseModel
+    public class ReveiwResponseModel
     {
         public int MovieId { get; set; }
         public int UserId { get; set; }

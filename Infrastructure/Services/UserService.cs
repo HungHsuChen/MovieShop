@@ -36,6 +36,25 @@ namespace Infrastructure.Services
             return true;
         }
 
+        public async Task<IEnumerable<UserDetailsModel>> GetAllUsers()
+        {
+            var users = await _userRepository.GetAll();
+            var userDetails = new List<UserDetailsModel>();
+            foreach(var user in users)
+            {
+                userDetails.Add(new UserDetailsModel
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    DateOfBirth = user.DateOfBirth,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber
+                });
+            }
+            return userDetails;
+        }
+
         public async Task<UserDetailsModel> GetUserDetails(int id)
         {
             var user = await _userRepository.GetById(id);

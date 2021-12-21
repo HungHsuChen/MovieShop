@@ -183,15 +183,15 @@ namespace Infrastructure.Services
             return movieCards;
         }
 
-        public async Task<IEnumerable<MovieReveiwResponseModel>> GetMovieReview(int id)
+        public async Task<IEnumerable<ReveiwResponseModel>> GetMovieReview(int id)
         {
             var reviews = await _reviewRepository.GetByMovieId(id);
 
-            var movieReviews = new List<MovieReveiwResponseModel>();
+            var movieReviews = new List<ReveiwResponseModel>();
             foreach (var review in reviews)
             {
                 movieReviews.Add(
-                    new MovieReveiwResponseModel {
+                    new ReveiwResponseModel {
                         MovieId = review.MovieId,
                         UserId = review.UserId,
                         Rating = review.Rating,

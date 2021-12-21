@@ -20,6 +20,6 @@ namespace ApplicationCore.ServiceInterfaces
         Task<IEnumerable<MovieCardResponseModel>> GetAllMovies();
         Task<MovieCardResponseModel> GetMovie(int id);
         Task<IEnumerable<MovieCardResponseModel>> GetMoviesByGenre(int genreId);
-        Task<IEnumerable<MovieReveiwResponseModel>> GetMovieReview(int id);
+        Task<IEnumerable<ReveiwResponseModel>> GetMovieReview(int id);
     }
 }
