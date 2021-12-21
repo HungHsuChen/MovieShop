@@ -30,7 +30,21 @@ namespace Infrastructure.Repositories
 
 
             // access the dbcontext object and dbset of movies object to query the movies table
-            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(10).ToListAsync();
+            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
+
+            return movies;
+        }
+
+        public async Task<IEnumerable<Movie>> Get30TopRatedMovies()
+        {
+            var ratings = await _dbContext.Review.GroupBy(m => new { Id = m.MovieId })
+                .Select(t => new
+                {
+                    average = t.Average(r => r == null ? 0 : r.Rating),
+                    Id = t.Key.Id
+                }).OrderByDescending(m => m.average).Take(30).Select(r => r.Id).ToListAsync();
+
+            var movies = await _dbContext.Movies.Where(m => ratings.Contains(m.Id)).ToListAsync();
 
             return movies;
         }
@@ -52,6 +66,16 @@ namespace Infrastructure.Repositories
             movieDetails.Rating = rating;
 
             return movieDetails;
+        }
+
+        public async Task<IEnumerable<Movie>> GetMoviesByGenre(int genreId)
+        {
+            var genre = await _dbContext.MovieGenre.Where(g => g.GenreId == genreId)
+                .Select(g => g.MovieId).ToListAsync();
+
+            var movies = await _dbContext.Movies.Include(m => m.GenresOfMovie).Where(m => genre.Contains(m.Id)).ToListAsync();
+
+            return movies;
         }
 
         //public Movie GetMovie()

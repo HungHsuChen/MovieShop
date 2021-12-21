@@ -17,7 +17,9 @@ namespace ApplicationCore.RepositoryInterfaces
         // GetMovies -> collection by condition -> list of movies whose budget > 100 million
 
         Task<IEnumerable<Movie>> Get30HighestGrossingMovies();
-
+        Task<IEnumerable<Movie>> Get30TopRatedMovies();
+        Task<IEnumerable<Movie>> GetMoviesByGenre(int genreId);
+ 
         //Movie GetMovie();
 
     }

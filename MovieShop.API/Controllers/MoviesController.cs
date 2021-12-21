@@ -16,6 +16,42 @@ namespace MovieShop.API.Controllers
         }
 
         [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetAllMovies()
+        {
+            var movies = await _movieService.GetAllMovies();
+            if (!movies.Any())
+            {
+                return NotFound();
+            }
+            return Ok(movies);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetMovie(int id)
+        {
+            var movie = await _movieService.GetMovie(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return Ok(movie);
+        }
+
+        [HttpGet]
+        [Route("topRated")]
+        public async Task<IActionResult> GetTopRatedMovies()
+        {
+            var movies = await _movieService.GetTopRatedMovies();
+            if (!movies.Any())
+            {
+                return NotFound();
+            }
+            return Ok(movies);
+        }
+
+        [HttpGet]
         [Route("topRevenue")]
         public async Task<IActionResult> GetTopRevenueMovies()
         {
@@ -38,5 +74,30 @@ namespace MovieShop.API.Controllers
             }
             return Ok(movie);
         }
+
+        [HttpGet]
+        [Route("genre/{genreId:int}")]
+        public async Task<IActionResult> GetMoviesByGenre(int genreId)
+        {
+            var movies = await _movieService.GetMoviesByGenre(genreId);
+            if (!movies.Any())
+            {
+                return NotFound();
+            }
+            return Ok(movies);
+        }
+
+        [HttpGet]
+        [Route("{id:int}/reviews")]
+        public async Task<IActionResult> GetMovieReviews(int id)
+        {
+            var reviews = await _movieService.GetMovieReview(id);
+            if (!reviews.Any())
+            {
+                return NotFound();
+            }
+            return Ok(reviews);
+        }
+
     }
 }
