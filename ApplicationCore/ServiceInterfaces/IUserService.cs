@@ -14,7 +14,7 @@ namespace ApplicationCore.ServiceInterfaces
         Task<List<ReviewResponseModel>> GetUserReviews(int id);
         Task<UserDetailsModel> GetUserDetails(int id);
         Task<bool> EditUserProfile(UserDetailsModel userDetailsModel);
-        Task<int> PurchaseMovie(PurchaseDetailResponseModel model, int userId);
+        Task<int> PurchaseMovie(PurchaseDetailResponseModel model);
         Task<int> FavoriteMovie(FavoriteModel model);
         Task<FavoriteModel> GetFavoriteMovie(int movieId, int userId);
         Task<bool> WriteReview(ReviewResponseModel model);

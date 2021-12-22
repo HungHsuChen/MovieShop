@@ -22,7 +22,7 @@ namespace MovieShop.API.Controllers
         public async Task<IActionResult> Purchase([FromBody] PurchaseDetailResponseModel model)
         {
             var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var purchase = await _userService.PurchaseMovie(model, userId);
+            var purchase = await _userService.PurchaseMovie(model);
 
             if (purchase == null)
             {

@@ -129,10 +129,11 @@ namespace Infrastructure.Services
                 purchaseDetail.Add(new PurchaseDetailResponseModel
                 {
                     Id = purchasedMovie.Id,
+                    UserId = id,
                     PurchaseNumber = purchasedMovie.PurchaseNumber,
                     PurchaseDateTime = purchasedMovie.PurchaseDateTime,
                     TotalPrice = purchasedMovie.TotalPrice,
-                    movieCard =
+                    movieCard = new MovieCardResponseModel
                     {
                         Id = movie.Id,
                         PosterUrl = movie.PosterUrl,
@@ -163,16 +164,16 @@ namespace Infrastructure.Services
             return reviewModels;
         }
 
-        public async Task<int> PurchaseMovie(PurchaseDetailResponseModel model, int userId)
+        public async Task<int> PurchaseMovie(PurchaseDetailResponseModel model)
         {
-            var dbPurchase = await _purchaseRepository.GetById(model.movieCard.Id, userId);
+            var dbPurchase = await _purchaseRepository.GetById(model.movieCard.Id, model.UserId);
 
             if (dbPurchase != null) throw new Exception("Already purchased");
 
             var purchase = new Purchase
             {
                 Id = model.Id,
-                UserId = userId,
+                UserId = model.UserId,
                 PurchaseNumber = model.PurchaseNumber,
                 TotalPrice = model.TotalPrice,
                 PurchaseDateTime = model.PurchaseDateTime,
