@@ -41,6 +41,7 @@ try
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
     builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+    builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 
     // inject the connection string into the MovieShopDbContext constructor using DbContextOptions
     builder.Services.AddDbContext<MovieShopDbContext>(

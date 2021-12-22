@@ -2,6 +2,7 @@
 using ApplicationCore.ServiceInterfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MovieShop.API.Controllers
 {
@@ -33,15 +34,17 @@ namespace MovieShop.API.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetUser()
         {
-            var users = await _userService.GetAllUsers();
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            if (!users.Any())
+            var user = await _userService.GetUserDetails(userId);
+
+            if (user == null)
             {
                 return NotFound();
             }
-            return Ok(users);
+            return Ok(user);
         }
 
         [HttpPost]
@@ -54,7 +57,6 @@ namespace MovieShop.API.Controllers
             {
                 return Unauthorized("Registration failed");
             }
-            // JWT Authentication
             return Ok(user);
         }
 
