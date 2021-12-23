@@ -7,7 +7,10 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {path:"", component: HomeComponent},
   {path:"account/login", component: LoginComponent},
-  {path:"account/register", component: RegisterComponent}
+  {path:"account/register", component: RegisterComponent},
+
+  // lazy load the movies module only when user goes to localhost:4200/movies path
+  {path:'movies',loadChildren:() => import("./movies/movies.module").then(mod=>mod.MoviesModule)}
 ];
 
 @NgModule({

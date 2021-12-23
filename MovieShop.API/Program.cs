@@ -5,10 +5,24 @@ using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
+var MyOrigins = "_myOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyOrigins,
+                      b =>
+                      {
+                          b.WithOrigins(builder.Configuration.GetValue<string>("spaClientUrl"))
+                          .AllowAnyHeader()
+                          .AllowCredentials()
+                          .AllowAnyMethod();
+                      });
+});
 
+
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -47,6 +61,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyOrigins);
+
 
 app.UseAuthorization();
 
