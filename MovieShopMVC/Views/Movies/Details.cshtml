@@ -23,7 +23,7 @@
 							<span class="badge bg-secondary float-right">@genre.Name</span>
 						}
 					</h5>
-					<span class="badge bg-success p-2">8.9</span>
+					<span class="badge bg-success p-2">@Math.Round((decimal)Model.Rating,1)</span>
 					<p class="card-text">@Model.Overview</p>
 				</div>
 			</div>
@@ -60,9 +60,13 @@
 			<h3 class="mt-3">TRAILERS</h3>
 			<hr />
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<a href="#">Inception</a>
-				</li>
+				@foreach (var trailer in @Model.Trailers)
+			   {
+				   <li class="list-group-item">
+						<a href="@trailer.TrailerUrl">@trailer.Name</a>
+					</li>
+			   }
+				
 			</ul>
 		</div>
 		<div class = "col-7">
