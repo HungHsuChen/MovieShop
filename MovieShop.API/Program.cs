@@ -3,7 +3,10 @@ using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var MyOrigins = "_myOrigins";
 
@@ -50,6 +53,17 @@ builder.Services.AddDbContext<MovieShopDbContext>(
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretKey"]))
+    };
+});
+
 var app = builder.Build();
 
 
@@ -64,6 +78,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(MyOrigins);
 
+app.UseAuthentication();
 
 app.UseAuthorization();
 
