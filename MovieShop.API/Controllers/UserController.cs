@@ -99,7 +99,7 @@ namespace MovieShop.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}/purchases")]
+        [Route("{userid:int}/purchases")]
         public async Task<IActionResult> GetPurchases(int userId)
         {
             var purchases = await _userService.GetUserPurchasedMovies(userId);
@@ -112,7 +112,7 @@ namespace MovieShop.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}/favorites")]
+        [Route("{userId:int}/favorites")]
         public async Task<IActionResult> GetFavorites(int userId)
         {
             var favorites = await _userService.GetUserFavoritedMovies(userId);
@@ -125,7 +125,7 @@ namespace MovieShop.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}/reviews")]
+        [Route("{userId:int}/reviews")]
         public async Task<IActionResult> GetReviews(int userId)
         {
             var reviews = await _userService.GetUserReviews(userId);

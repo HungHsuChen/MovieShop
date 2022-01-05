@@ -16,8 +16,9 @@ export class AuthenticationService {
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn = this.isLoggedInSubject.asObservable();
+  private jwtHelper = new JwtHelperService();
 
-  constructor(private http:HttpClient, private jwtHelper: JwtHelperService) { }
+  constructor(private http:HttpClient) { }
 
   login(userLogin: Login): Observable<boolean>{
     //take email/password from login component and put it to api/account/login URL
@@ -44,7 +45,7 @@ export class AuthenticationService {
     // get token from local storage
     var token = localStorage.getItem('token');
 
-    if(token && this.jwtHelper.isTokenExpired(token)){
+    if(token && !this.jwtHelper.isTokenExpired(token)){
       // decode the token, get the info, and put it inside user subject
       const decodedToekn = this.jwtHelper.decodeToken(token)
 

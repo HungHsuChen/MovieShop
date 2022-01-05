@@ -86,7 +86,7 @@ namespace MovieShop.API.Controllers
             // create the token
 
             var claims = new List<Claim> {
-            new Claim(ClaimTypes.Name, user.Id.ToString()),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
             new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),

@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { MovieCardComponent } from './shared/components/movie-card/movie-card.component';
-import { MoviesModule } from './movies/movies.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,7 @@ import { MoviesModule } from './movies/movies.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
