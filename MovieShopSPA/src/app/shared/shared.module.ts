@@ -6,13 +6,13 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
 
 @NgModule({
   declarations: [
-    MovieCardComponent
+    // MovieCardComponent
   ],
   imports: [
     CommonModule
   ],
-  exports: [
-    MovieCardComponent
-  ],
+  // exports: [
+  //   MovieCardComponent
+  // ],
 })
-export class SharedModule { }
+// export class SharedModule { }
