@@ -23,7 +23,6 @@ namespace MovieShop.API.Controllers
         [Route("purchase")]
         public async Task<IActionResult> Purchase([FromBody] PurchaseDetailResponseModel model)
         {
-            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var purchase = await _userService.PurchaseMovie(model);
 
             if (purchase == null)
@@ -106,7 +105,7 @@ namespace MovieShop.API.Controllers
 
             if (!purchases.Any())
             {
-                return NotFound();
+                return Unauthorized("Failed");
             }
             return Ok(purchases);
         }

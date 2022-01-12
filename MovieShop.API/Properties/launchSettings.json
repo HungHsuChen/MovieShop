@@ -1,23 +1,23 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:57340",
-      "sslPort": 44386
+      "applicationUrl": "http://localhost:49234/",
+      "sslPort": 44372
     }
   },
   "profiles": {
     "MovieShop.API": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7261;http://localhost:5261",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:7261;http://localhost:5261",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
